@@ -1,0 +1,29 @@
+{
+    "products": [
+      {
+        "id": "1",
+        "name": "camisa",
+        "price": 59.9
+      },
+      {
+        "id": "2",
+        "name": "calça vermelha",
+        "price": 90
+      },
+      {
+        "id": "3",
+        "name": "boné aba reta",
+        "price": 29.9
+      },
+      {
+        "id": "34a7",
+        "name": "mouse",
+        "price": "45"
+      },
+      {
+        "id": "ed28",
+        "name": "capa de chuva",
+        "price": "50.50"
+      }
+    ]
+  }
