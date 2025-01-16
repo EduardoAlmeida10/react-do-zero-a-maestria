@@ -1,0 +1,12 @@
+.gameOver{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-top: 3em;
+}
+
+.score span{
+    color: #ECFa00;
+    font-size: 1.5em;
+}

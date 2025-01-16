@@ -4,7 +4,7 @@ import "./Game.css"
 
 import PropTypes from 'prop-types';
 
-const Game = ({ verifyLetter, pickedWord, pickedCategory, letters, guessedLetters, wrongLetters, guesses, score }) => {
+const Game = ({ verifyLetter, pickedCategory, letters, guessedLetters, wrongLetters, guesses, score }) => {
 
     const [letter, setLetter] = useState("");
     const letterInputRef = useRef(null);
