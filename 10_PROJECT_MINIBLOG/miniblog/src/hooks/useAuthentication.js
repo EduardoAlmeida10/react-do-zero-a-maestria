@@ -14,11 +14,11 @@ export const useAuthentication = () => {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(null);
 
+    const auth = getAuth();
+
     // cleanup
     // deal with memory leak
     const [cancelled, setCancelled] = useState(false);
-
-    const auth = getAuth();
 
     function checkIfIsCancelled() {
         if (cancelled) {
@@ -26,6 +26,7 @@ export const useAuthentication = () => {
         }
     }
 
+    // register
     const createUser = async (data) => {
         checkIfIsCancelled();
 
@@ -68,6 +69,13 @@ export const useAuthentication = () => {
 
     };
 
+    // logout - sign out
+    const logout = () => {
+        checkIfIsCancelled();
+
+        signOut(auth);
+    }
+
     useEffect(() => {
         return () => setCancelled(true);
     }, [])
@@ -77,5 +85,6 @@ export const useAuthentication = () => {
         createUser,
         error,
         loading,
+        logout,
     };
 }
