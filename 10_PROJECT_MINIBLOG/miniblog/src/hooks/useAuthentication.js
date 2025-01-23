@@ -1,7 +1,6 @@
-import { db } from "../firebase/config";
+import { db, auth } from "../firebase/config";
 
 import {
-    getAuth,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     updateProfile,
@@ -13,8 +12,6 @@ import { useState, useEffect } from 'react';
 export const useAuthentication = () => {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(null);
-
-    const auth = getAuth();
 
     // cleanup
     // deal with memory leak
