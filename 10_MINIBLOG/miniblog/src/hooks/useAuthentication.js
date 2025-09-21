@@ -51,11 +51,11 @@ export const useAuthentication = () => {
 
             let systemErrorMessage
 
-            if (error.message.includes("Password")){
+            if (error.message.includes("Password")) {
                 systemErrorMessage = "A senha precisa ter pelo menos 6 caracteres"
-            }else if(error.message.includes("email-already")){
+            } else if (error.message.includes("email-already")) {
                 systemErrorMessage = "E-mail já cadastrado"
-            }else{
+            } else {
                 systemErrorMessage = "Ocorreu um erro, por favor tente mais tarde"
             }
 
@@ -63,6 +63,11 @@ export const useAuthentication = () => {
             setLoading(false)
 
         }
+    }
+
+    const logout = () => {
+        checkIsCancelled()
+        signOut(auth)
     }
 
     useEffect(() => {
@@ -73,7 +78,8 @@ export const useAuthentication = () => {
         auth,
         createUser,
         error,
-        loading
+        loading,
+        logout
     }
 
 }
