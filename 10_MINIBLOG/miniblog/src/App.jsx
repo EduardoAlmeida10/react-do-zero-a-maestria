@@ -12,6 +12,8 @@ import NavBar from "./components/NavBar/NavBar"
 import Footer from "./components/Footer/Footer"
 import Login from "./pages/Login/Login"
 import Register from "./pages/Register/Register"
+import Dashboard from "./pages/Dashboard/Dashboard"
+import CreatePost from "./pages/CreatePost/CreatePost"
 
 import { AuthProvider } from './context/AuthContext.jsx'
 
@@ -46,6 +48,8 @@ function App() {
               <Route path='/about' element={<About />} />
               <Route path='/login' element={<Login />} />
               <Route path='/register' element={<Register />} />
+              <Route path='/posts/create' element={<CreatePost />} />
+              <Route path='/dashboard' element={<Dashboard/>} />
             </Routes>
           </div>
           <Footer />
