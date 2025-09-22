@@ -13,22 +13,45 @@ function CreatePost() {
     const [tags, setTags] = useState([])
     const [formError, setFormError] = useState("")
 
-    const {user} = useAuthValue()
+    const navigate = useNavigate()
 
-    const {insertDocument, response} = useInsertDocument("post")
+    const { user } = useAuthValue()
+
+    const { insertDocument, response } = useInsertDocument("post")
 
     const handleSubmit = (e) => {
         e.preventDefault()
         setFormError("")
 
+        let error = ""
+
+        try {
+            new URL(image)
+        } catch {
+            error = "A imagem precisa ser uma URL."
+        }
+
+        if (error) {
+            setFormError(error)
+            return
+        }
+
+        const tagsArray = tags.split(",").map((tag) => tag.trim().toLowerCase())
+
+        if (!title || !image || !tags || !body) {
+            setFormError("Por favor, preencha todos os campos!")
+        }
+
         insertDocument({
             title,
             image,
             body,
-            tags,
+            tagsArray,
             uid: user.uid,
             createdBy: user.displayName
         })
+
+        navigate("/")
     }
 
     return (
@@ -59,18 +82,18 @@ function CreatePost() {
                     />
                 </label>
                 <label>
-                    <span>Título</span>
+                    <span>Conteudo:</span>
                     <textarea
                         name="body"
                         required
                         placeholder="Insira o conteudo do post"
-                        onChange={(e)=> setBody(e.target.value)}
+                        onChange={(e) => setBody(e.target.value)}
                         value={body}
                     >
                     </textarea>
                 </label>
                 <label>
-                    <span>Tags</span>
+                    <span>Tags:</span>
                     <input
                         type="text"
                         name="tags"
@@ -81,6 +104,7 @@ function CreatePost() {
                     />
                 </label>
                 {response.error && <p className="error">{response.error}</p>}
+                {formError && <p className="error">{formError}</p>}
                 {!response.loading && <button className="btn">Cadastrar</button>}
                 {response.loading && <button className="btn" disabled>Aguarde...</button>}
             </form>
