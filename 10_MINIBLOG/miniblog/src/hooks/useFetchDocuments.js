@@ -6,7 +6,6 @@ import {
     orderBy,
     onSnapshot,
     where,
-    QuerySnapshot,
 } from "firebase/firestore"
 
 export const useFetchDocuments = (docCollection, search = null, uid = null) => {
@@ -30,9 +29,9 @@ export const useFetchDocuments = (docCollection, search = null, uid = null) => {
 
                 let q
 
-                q = await query(collectionRef, orderBy("cretedAt", "desc"))
+                q = await query(collectionRef, orderBy("createdAt", "desc"))
 
-                await onSnapshot(q, (querySnapshot) => {
+                onSnapshot(q, (querySnapshot) => {
                     setDocuments(
                         querySnapshot.docs.map((doc) => ({
                             id: doc.id,
